@@ -23,7 +23,7 @@ function isValidGroupSelected(selectedGroup, DOB) {
   }
 }
 
-function isValidEventRegistration(selectedGroup, g1e1, g1e2, g2e1, g2e2, q) {
+function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g2e1, g2e2, q) {
   switch (selectedGroup) {
     case "Group 1":
       if (g1e1 == g1e2) {
@@ -53,6 +53,11 @@ function isValidEventRegistration(selectedGroup, g1e1, g1e2, g2e1, g2e2, q) {
       if (g2e1 == g2e2) {
         return [false, "Same events selected."];
       }
+
+      if ((!g2e1.includes("GROUP") || (g2e2.length > 0)) && passedG2E == "No") {
+        return [false, "Cannot participate in Individual event. Did not pass Group 3 exam."];
+      }
+
 
       if ((g2e1.includes("GROUP") && g2e2.includes("GROUP"))) {
         return [false, "Cannot participate in two group events at the same time."];
@@ -92,7 +97,7 @@ function validateSheet() {
     rows[i][lastIndex - 3] = isValidGroup[0] ? "Accepted" : "Not Allowed";
     rows[i][lastIndex] += isValidGroup[1];
 
-    const isValidEventReg = isValidEventRegistration(rows[i][1], rows[i][9], rows[i][10], rows[i][11], rows[i][12], rows[i][13]);
+    const isValidEventReg = isValidEventRegistration(rows[i][1], rows[i][9], rows[i][10], rows[i][11], rows[i][12], rows[i][13], rows[i][14]);
     rows[i][lastIndex - 2] = isValidEventReg[0] ? "Accepted" : "Not Allowed";
     rows[i][lastIndex] += ` ${isValidEventReg[1]}`;
 
