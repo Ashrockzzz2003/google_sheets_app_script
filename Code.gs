@@ -55,7 +55,7 @@ function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g2e1, g2
       }
 
       if ((!g2e1.includes("GROUP") || (g2e2.length > 0)) && passedG2E == "No") {
-        return [false, "Cannot participate in Individual event. Did not pass Group 3 exam."];
+        return [false, "Cannot participate in Individual event. Did not pass Group 2 exam."];
       }
 
 
