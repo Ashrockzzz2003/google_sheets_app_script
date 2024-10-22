@@ -23,7 +23,7 @@ function isValidGroupSelected(selectedGroup, DOB) {
   }
 }
 
-function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g2e1, g2e2, q) {
+function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g1e3, g2e1, g2e2, q) {
   switch (selectedGroup) {
     case "Group 1":
       if (g1e1 == g1e2) {
@@ -32,6 +32,10 @@ function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g2e1, g2
 
       if ((g1e1 == "Bhajans" && g1e2 == "Tamizh Chants") || (g1e2 == "Bhajans" && g1e1 == "Tamizh Chants")) {
         return [false, "Cannot participate in Bhajans and Tamizh Chants at the same time."];
+      }
+
+      if (g1e1.length > 0 && g2e1.length > 0 && g1e3.length > 0) {
+        return [false, "Cannot participate in 3 events at the same time."]
       }
 
       return [true, ""];
@@ -71,6 +75,10 @@ function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g2e1, g2
         return [false, "Cannot participate in Quiz and Drawing at the same time."];
       }
 
+      if (g2e1.length > 0 && g2e2.length > 0 && q == "Yes") {
+        return [false, "Cannot participate in 3 events at the same time."];
+      }
+
       return [true, ""];
     case "General Category":
       if (g1e1 == "" && g1e2 == "" && g2e1 == "" && g2e2 == "" && (q == "Yes" || q == "No")) {
@@ -97,7 +105,7 @@ function validateSheet() {
     rows[i][lastIndex - 3] = isValidGroup[0] ? "Accepted" : "Not Allowed";
     rows[i][lastIndex] += isValidGroup[1];
 
-    const isValidEventReg = isValidEventRegistration(rows[i][1], rows[i][9], rows[i][10], rows[i][11], rows[i][12], rows[i][13], rows[i][14]);
+    const isValidEventReg = isValidEventRegistration(rows[i][1], rows[i][9], rows[i][10], rows[i][11], rows[i][12], rows[i][13], rows[i][14], rows[i][15]);
     rows[i][lastIndex - 2] = isValidEventReg[0] ? "Accepted" : "Not Allowed";
     rows[i][lastIndex] += ` ${isValidEventReg[1]}`;
 
