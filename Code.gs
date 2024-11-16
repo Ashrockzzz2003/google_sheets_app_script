@@ -79,6 +79,10 @@ function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g1e3, g2
         return [false, "Cannot participate in 3 events at the same time."];
       }
 
+      if ((g2e1.includes("GROUP") || g2e2.includes("GROUP")) && (q == "Yes" || g2e1 == "Drawing" || g2e2 == "Drawing")) {
+        return [false, "Cannot participate in GROUP event and (Quiz or Drawing) at the same time."];
+      }
+
       return [true, ""];
     case "General Category":
       if (g1e1 == "" && g1e2 == "" && g2e1 == "" && g2e2 == "" && (q == "Yes" || q == "No")) {
