@@ -42,6 +42,10 @@ function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g1e3, g2
         return [false, "Cannot participate in 3 events at the same time."]
       }
 
+      if ((g1e1.includes("GROUP") && g1e2.includes("GROUP"))) {
+        return [false, "Cannot participate in two group events at the same time."];
+      }
+
       return [true, ""];
     case "Group 2":
       if (g2e1.length == 0 && g2e2.length == 0) {
