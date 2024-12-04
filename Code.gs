@@ -26,7 +26,7 @@ function isValidGroupSelected(selectedGroup, DOB) {
 function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g1e3, g2e1, g2e2, q) {
   switch (selectedGroup) {
     case "Group 1":
-      if (g1e1.length == 0 && g1e2.length == 0) {
+      if (g1e1.length == 0 && g1e2.length == 0 && g1e3.length == 0) {
         return [false, "No Events selected for registration."];
       }
 
