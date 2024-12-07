@@ -64,6 +64,10 @@ function isValidEventRegistration(selectedGroup, passedG2E, g1e1, g1e2, g1e3, g2
         return [false, "Cannot participate in Bhajans and Tamizh Chants at the same time."];
       }
 
+      if ((g2e1.includes("GROUP") || g2e2.includes("GROUP")) && (q == "Yes" || g2e1 == "Drawing" || g2e2 == "Drawing")) {
+        return [false, "Cannot participate in GROUP event and (Quiz or Drawing) at the same time."];
+      }
+
       return [true, ""];
     case "Group 3":
       if (g2e1.length == 0 && g2e2.length == 0 && q == "No") {
